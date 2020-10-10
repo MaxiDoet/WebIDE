@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/TheHeroCraft1579/WebIDE/issues"
   },
-  "homepage": "https://github.com/TheHeroCraft1579/WebIDE#readme"
+  "homepage": "https://github.com/TheHeroCraft1579/WebIDE#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socketio": "^1.0.0"
+  }
 }

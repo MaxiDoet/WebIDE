@@ -1,0 +1,57 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
+}
+
+.cm-container {
+
+}
+
+.button-icon {
+
+}
+
+.new-file {
+	position: fixed;
+    top: 50%;
+    height: 11em;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    background-color: #212121;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    border: none;
+}
+.new-file-type-selector {
+	display: inline-flex;
+}
+.new-file-type {
+	background: #485563;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #29323c, #424b54);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #29323c, #424b54); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	transition: all 1s ease-out;
+	width: 100px;
+	height: 86px;
+	border-radius: 5px;
+	margin: 10px;
+}
+.new-file-type-logo {
+	padding-left: 10px;
+    padding-top: 4px;
+}
+.new-file-type-name {
+	padding-left: 15px;
+	display: inline-block;
+}
+.new-file-button {
+    display: block;
+    left: 50%;
+    position: absolute;
+    width: 80px;
+    height: 25px;
+    margin-top: 5px;
+    transform: translateX(-50%);
+    font-weight: 600;
+}

@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Collaborative Editor</title>
+  </head>
+  <body>
+    <div class="cm-container">
+		<textarea id="editor"></textarea>
+    </div>
+
+    <script src="/components/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="/components/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/components/codemirror/theme/base16-dark.css ">
+    <link rel="stylesheet" href="/ide.css">
+    <script src="/components/codemirror/mode/javascript/javascript.js"></script>
+    <script src="/components/socket.io-client/dist/socket.io.js"></script>
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script>
+        let editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+            mode: "javascript"
+         });
+        
+        var socket = io();
+        
+        editor.on("keyup", function() {
+			var msg = {
+				value: editor.getValue()
+			};
+			socket.emit("document-update", msg);
+		});
+		
+		 editor.setOption("theme", "base16-dark");
+
+    </script>
+    
+    <dialog class="new-file">
+		<p style="font-weight: 600; text-align: center;">New File</p>
+		<div class="new-file-type-selector">
+			<div class="new-file-type">
+				<i class="new-file-type-logo fab fa-2x fa-python"></i>
+				<p class="new-file-type-name">Python</p>
+			</div>
+			<div class="new-file-type">
+				<i class="new-file-type-logo fab fa-2x fa-node"></i>
+				<p class="new-file-type-name">NodeJS</p>
+			</div>
+		</div>
+		<button class="new-file-button">Create</button>
+    </dialog>
+  </body>
+</html>
