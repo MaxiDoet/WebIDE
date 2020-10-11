@@ -3,6 +3,9 @@
     <title>Collaborative Editor</title>
   </head>
   <body>
+	<div class="fm-container" id="container">
+	
+	</div>
     <div class="cm-container">
 		<textarea id="editor"></textarea>
     </div>
@@ -14,6 +17,9 @@
     <script src="/components/codemirror/mode/javascript/javascript.js"></script>
     <script src="/components/socket.io-client/dist/socket.io.js"></script>
     <script src="/components/jquery/dist/jquery.min.js"></script>
+    
+    <script src="tree.js"></script>
+    <link rel="stylesheet" href="treejs.css" />
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
@@ -34,20 +40,30 @@
 		
 		 editor.setOption("theme", "base16-dark");
 
+		var root = new TreeNode("Workspace");
+			var n1 = new TreeNode("1");
+				var n11 = new TreeNode("1.1");
+        
+root.addChild(n1);
+
+n1.addChild(n11);
+
+var view = new TreeView(root, "#container");
     </script>
     
     <dialog class="new-file">
 		<p style="font-weight: 600; text-align: center;">New File</p>
-		<div class="new-file-type-selector">
-			<div class="new-file-type">
-				<i class="new-file-type-logo fab fa-2x fa-python"></i>
-				<p class="new-file-type-name">Python</p>
-			</div>
-			<div class="new-file-type">
-				<i class="new-file-type-logo fab fa-2x fa-node"></i>
-				<p class="new-file-type-name">NodeJS</p>
-			</div>
-		</div>
+		<div class="select">
+    <select>
+        <option>Select File Type</option>
+        <option>Python (.py)</option>
+        <option>Javascript (.js)</option>
+        <option>PHP (.php)</option>
+        <option>HTML (.html, .htm)</option>
+    </select>
+    <div class="select_arrow">
+    </div>
+</div>
 		<button class="new-file-button">Create</button>
     </dialog>
   </body>
