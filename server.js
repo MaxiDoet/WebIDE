@@ -5,6 +5,7 @@ var io = require("socket.io")(http);
 
 var path = require('path');
 var fs = require('fs');
+var dirTree = require("directory-tree");
 
 app.use("/", express.static("app"));
 
@@ -27,19 +28,8 @@ io.on("connection", function(socket) {
 		socket.emit("workspace-scan-result", {path: ""});
 		console.log("Invalid Scan Request!");
 	}
-	
-	fs.readdir(msg.path, function (err, files) {
-		//handling error
-		if (err) {
-			socket.emit("workspace-scan-result", {path: ""});
-			return console.log('Unable to scan directory: ' + err);
-		} 
 		
-		result = {}
-		files.forEach(function (file) {
-			console.log(file); 
-		});
-		socket.emit("workspace-scan-result", {result: files});
-	});
+	var tree = dirTree("workspace");
+	socket.emit("workspace-scan-result", {tree: tree});
   });
 });
